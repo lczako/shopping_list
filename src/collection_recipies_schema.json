@@ -1,0 +1,73 @@
+{
+  "$jsonSchema": {
+    "title": "Recipe Validation",
+    "bsonType": "object",
+    "required": [
+      "_id",
+      "name",
+      "ingredients",
+      "instruction"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Name of the meal."
+      },
+      "ingredients": {
+        "bsonType": "array",
+        "description": "List of ingredients.",
+        "items": {
+          "bsonType": "object",
+          "properties": {
+            "name": {
+              "bsonType": "string",
+              "description": "Name of the ingredient."
+            },
+            "amount": {
+              "bsonType": [
+                "double",
+                "int"
+              ],
+              "description": "Amount of the ingredient should be used in the specified units."
+            },
+            "unit": {
+              "bsonType": "string",
+              "description": "Unit."
+            },
+            "other": {
+              "bsonType": [
+                "string",
+                "null"
+              ],
+              "description": "Additional information about the ingredient or about how should it be used."
+            },
+            "optional": {
+              "bsonType": "bool",
+              "description": "true if an ingredient is not required otherwise false."
+            },
+            "labels": {
+              "bsonType": "array",
+              "description": "Labels help to find ingredients in the grocery store. You can use something like: vegetable, spice, meat, etc..",
+              "items": {
+                "bsonType": "string"
+              }
+            }
+          },
+          "required": [
+            "name",
+            "amount",
+            "unit",
+            "optional"
+          ]
+        }
+      },
+      "instruction": {
+        "description": "Instruction about how to prepare the meal.",
+        "bsonType": "string"
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ services:
     volumes:
       - mdata:/etc/data
     ports:
-      - "27017:27017"
+      - ${MONGO_PORT}:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
@@ -24,14 +24,15 @@ services:
   app:
     build: .
     volumes:
-      - ./shopping_list:/home/app/src
+      - ./shopping_list:/home/app/shopping_list
+      - ./src:/home/app/src
       - ./test:/home/app/test
       - ./output:/home/app/output
-    environment:
-      MONGODB_USERNAME: ${MONGO_DB_USERNAME}
-      MONGODB_PASSWORD: ${MONGO_DB_PASSWORD}
+    env_file:
+      - .env
     depends_on:
       - mongo
+    tty: true
 
 volumes:
   mdata:

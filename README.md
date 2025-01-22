@@ -1,5 +1,7 @@
 # shopping_list
 
+# [WARNING: This project is in progress.]
+
 Pet project to prepare shopping list for the week based on the meals
 I'm planning to make.
 
